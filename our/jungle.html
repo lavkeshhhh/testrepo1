@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WildHaven | Tropical Zoo Experience</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --jungle-green: #1b4332;
+            --leaf-green: #2d6a4f;
+            --gold: #ffb703;
+            --earth-brown: #4a3728;
+            --soft-white: #f8f9fa;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0a0f0a;
+            color: var(--soft-white);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-reveal {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 15, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: 900;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1516426122078-c16013a79145?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            background-color: var(--gold);
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(255, 183, 3, 0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #fff;
+        }
+
+        /* --- About Section --- */
+        .section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--gold);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 20px;
+            border: 5px solid var(--leaf-green);
+        }
+
+        /* --- Animal Cards --- */
+        .animal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #1a2e23;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            border-color: var(--gold);
+        }
+
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .card-info {
+            padding: 25px;
+        }
+
+        .card-info h3 {
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        /* --- Floating Animation for specific elements --- */
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 50px 10%;
+            background: #050805;
+            text-align: center;
+            border-top: 1px solid var(--leaf-green);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .about-content { grid-template-columns: 1fr; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">WILDHAVEN</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#animals">Animals</a></li>
+            <li><a href="#contact">Visit</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1 class="animate-reveal">Into The Wild</h1>
+        <p class="animate-reveal">Experience the majesty of nature in our sprawling tropical sanctuary. A haven for wildlife and a dream for explorers.</p>
+        <a href="#animals" class="btn animate-reveal">Explore Wildlife</a>
+    </section>
+
+    <section class="section" id="about">
+        <h2 class="section-title">Our Sanctuary</h2>
+        <div class="about-content">
+            <div class="about-text animate-reveal">
+                <p>WildHaven is more than just a zoo. It's a world-class conservation center dedicated to protecting endangered species. From the deepest jungles to the tallest peaks, we bring the wonders of the earth to your doorstep.</p><br><br>
+                <p>Our mission is simple: <strong>Education, Conservation, and Inspiration.</strong> We believe that by connecting people with animals, we create a future where both can thrive in harmony.</p>
+            </div>
+            <img src="https://images.unsplash.com/photo-1583523665377-542d30f1216f?auto=format&fit=crop&q=80&w=1000" alt="Jungle" class="about-image">
+        </div>
+    </section>
+
+    <section class="section" id="animals" style="background-color: #0d1a12;">
+        <h2 class="section-title">Meet the Residents</h2>
+        <div class="animal-grid">
+            <!-- Card 1 -->
+            <div class="card animate-reveal">
+                <img src="https://images.unsplash.com/photo-1546182990-dffebig54d73?auto=format&fit=crop&q=80&w=800" alt="Lion">
+                <div class="card-info">
+                    <h3>The King Lion</h3>
+                    <p>Roam through our savannah habitat and witness the power and grace of the African Lion.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card animate-reveal" style="animation-delay: 0.2s;">
+                <img src="https://images.unsplash.com/photo-1557050543-4d5f9fc8936a?auto=format&fit=crop&q=80&w=800" alt="Elephant">
+                <div class="card-info">
+                    <h3>Gentle Giants</h3>
+                    <p>Explore the majestic world of our elephants, featuring interactive feeding sessions.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card animate-reveal" style="animation-delay: 0.4s;">
+                <img src="https://images.unsplash.com/photo-1571759604034-b3b92d59930b?auto=format&fit=crop&q=80&w=800" alt="Gorilla">
+                <div class="card-info">
+                    <h3>Forest Guardians</h3>
+                    <p>Step into the misty jungle to observe our gorillas in their semi-natural forest home.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>&copy; 2023 WildHaven Tropical Zoo. All rights reserved.</p>
+        <p style="margin-top: 10px; color: var(--gold);">123 Jungle Road, Nature Valley</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-reveal');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .about-content').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
